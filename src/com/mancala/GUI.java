@@ -19,9 +19,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class GUI {
-	private Pot[] pots;
-	private Pot bigPot1;
-	private Pot bigPot2;
+	 Pot[] pots;
+	 Pot bigPot1;
+	 Pot bigPot2;
 	private Mancala mancala;
 	
 	public GUI(Mancala mancala) {

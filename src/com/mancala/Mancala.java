@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 public class Mancala {
 	private static final int PIT_COUNT = 6;
 	
-	private GUI gui;
+	 GUI gui;
 	private Player playerOne;
 	private Player playerTwo;
 	private HighScores highScores;
@@ -55,7 +55,7 @@ public class Mancala {
 		
 		for (int x=0; x<36; x++)
 		{
-			int[] colors = {(int) (Math.random()*256), (int) (Math.random()*256), (int) (Math.random()*256)};
+			int[] colors = {(int) (Math.random()*256), (int) (Math.random()*256), (int) (Math.random()*256), (int) (Math.random()*6), (int) (Math.random()*6)};
 			colorBases.add(colors);
 		}
 
@@ -76,6 +76,14 @@ public class Mancala {
 	}
 	
 	public void resetGame() {
+		colorBases = new ArrayList<int[]>();
+		
+		for (int x=0; x<36; x++)
+		{
+			int[] colors = {(int) (Math.random()*256), (int) (Math.random()*256), (int) (Math.random()*256), (int) (Math.random()*6), (int) (Math.random()*6)};
+			colorBases.add(colors);
+		}
+		
 		playerOne.reset();
 		playerTwo.reset();
 		playerOne.startTurn();

@@ -9,6 +9,8 @@ public class Bean {
 	int red = 255;
 	int blue = 81;
 	int green = 71;
+	int modderX = 0;
+	int modderY = 0;
 
 	public Bean(double x, double y) {
 		this.relativeX = x;
@@ -33,7 +35,7 @@ public class Bean {
 	
 	public int[] getColorBase()
 	{
-		int[] colors = {red, green, blue};
+		int[] colors = {red, green, blue, modderX, modderY};
 		return colors;
 	}
 	
@@ -42,6 +44,9 @@ public class Bean {
 		red = colors[0];
 		green = colors[1];
 		blue = colors[2];
+		
+		modderX = colors[3];
+		modderY = colors[4];
 	}
 	
 	public GradientPaint getColor(int x, int y)

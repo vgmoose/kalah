@@ -74,7 +74,7 @@ public class SmallPit extends Pit {
 
 	@Override
 	public void reset() {
-		this.setCounters(4);
+		this.setCounters(3);
 		this.pot.initBeans();
 	}
 }

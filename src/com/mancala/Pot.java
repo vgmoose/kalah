@@ -50,7 +50,14 @@ public class Pot extends JComponent {
 			Bean bean = new Bean(1.0 * x / getWidth(), 1.0 * y / getHeight());
 			if(isSuitable(bean) || System.currentTimeMillis() - startTime > 200) {
 				lock.lock();
+				try{
 				bean.setColorBase(Mancala.colorBases.remove(0));
+				}catch(Exception e)
+				{
+					// just in case colors are out of sync
+					int[] zeroes = new int[5];
+					bean.setColorBase(zeroes);
+				}
 				beans.add(bean);
 				lock.unlock();
 			}
@@ -118,8 +125,13 @@ public class Pot extends JComponent {
 		g2d.drawOval((int) (getWidth() * 0.1), (int) (getHeight() * 0.1), (int) (getWidth() * 0.8), (int) (getHeight() * 0.8));
 		g2d.setColor(mouseOver? new Color(255, 255, 0, 100) : new Color(255, 255, 255, 100));
 		
-		g2d.fillOval((int) (getWidth() * 0.1), (int) (getHeight() * 0.1), (int) (getWidth() * 0.8), (int) (getHeight() * 0.8));
-		
+		if (pit.owner.isTurn())
+			g2d.fillOval((int) (getWidth() * 0.1), (int) (getHeight() * 0.1), (int) (getWidth() * 0.8), (int) (getHeight() * 0.8));
+		else
+		{
+			g2d.setColor(new Color(255, 255, 255, 45));
+			g2d.fillOval((int) (getWidth() * 0.1), (int) (getHeight() * 0.1), (int) (getWidth() * 0.8), (int) (getHeight() * 0.8));
+		}
 		g2d.setColor(new Color(255, 69, 0));
 		g2d.setStroke(new BasicStroke(0.1F, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		if(!beansInitialized) {
@@ -132,7 +144,7 @@ public class Pot extends JComponent {
 			int y = (int) (bean.getY() * getHeight());
 			GradientPaint gp = bean.getColor(x, y);
 			g2d.setPaint(gp);
-			g2d.fillOval(x, y, 15, 15);
+			g2d.fillOval(x, y, 15+bean.modderX, 15+bean.modderY);
 		}
 		g2d.setColor(Color.white);
 		if(isLower) {
