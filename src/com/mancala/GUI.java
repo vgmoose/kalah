@@ -27,7 +27,7 @@ public class GUI {
 	public GUI(Mancala mancala) {
 		this.mancala = mancala;
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		JFrame frame = new JFrame("Mancala");
+		JFrame frame = new JFrame("Kalah");
 		frame.setSize(860, 320);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocation((screen.width - 860) / 2, (screen.height - 320) / 2);

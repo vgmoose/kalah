@@ -19,7 +19,7 @@ import javax.swing.JComponent;
 public class Pot extends JComponent {
 	
 	private static final long serialVersionUID = 4648914916326942097L;
-	private static final int BEAN_COUNT = 4;
+	private static final int BEAN_COUNT = 3;
 	protected boolean mouseOver;
 	protected boolean beansInitialized;
 	protected List<Bean> beans;
@@ -50,6 +50,7 @@ public class Pot extends JComponent {
 			Bean bean = new Bean(1.0 * x / getWidth(), 1.0 * y / getHeight());
 			if(isSuitable(bean) || System.currentTimeMillis() - startTime > 200) {
 				lock.lock();
+				bean.setColorBase(Mancala.colorBases.remove(0));
 				beans.add(bean);
 				lock.unlock();
 			}
@@ -61,6 +62,10 @@ public class Pot extends JComponent {
 	
 	public void removeBeans() {
 		lock.lock();
+		for (Bean b : beans)
+		{
+			Mancala.colorBases.add(b.getColorBase());
+		}
 		beans.clear();
 		lock.unlock();
 		refresh();
@@ -125,7 +130,7 @@ public class Pot extends JComponent {
 		for(Bean bean : beans) {
 			int x = (int) (bean.getX() * getWidth());
 			int y = (int) (bean.getY() * getHeight());
-			GradientPaint gp = new GradientPaint(x + 2, y + 2, new Color(/*255, 69, 0*/255, 81, 71), x + 13, y + 13, new Color(139, /*37*/9, 0), false);
+			GradientPaint gp = bean.getColor(x, y);
 			g2d.setPaint(gp);
 			g2d.fillOval(x, y, 15, 15);
 		}

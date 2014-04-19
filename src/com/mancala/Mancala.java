@@ -1,5 +1,7 @@
 package com.mancala;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public class Mancala {
@@ -9,6 +11,8 @@ public class Mancala {
 	private Player playerOne;
 	private Player playerTwo;
 	private HighScores highScores;
+	
+	static ArrayList<int[]> colorBases;
 
 	/**
 	 * @param args
@@ -47,9 +51,17 @@ public class Mancala {
 	}
 	
 	public void initGame() {
+		colorBases = new ArrayList<int[]>();
+		
+		for (int x=0; x<36; x++)
+		{
+			int[] colors = {(int) (Math.random()*256), (int) (Math.random()*256), (int) (Math.random()*256)};
+			colorBases.add(colors);
+		}
+
 		initPlayers();
 		gui = new GUI(this);
-		changeNames();
+		
 		highScores = new HighScores();
 	}
 	
@@ -86,20 +98,20 @@ public class Mancala {
 		//create normal pits (1-5) for player 1
 		for(int i = 0; i < PIT_COUNT - 1; i++) {
 			playerOnePits[i] = new SmallPit(playerOne);
-			playerOnePits[i].setCounters(4);
+			playerOnePits[i].setCounters(3);
 		}
 		
 		//create normal pits (1-5) for player 2
 		for(int i = 0; i < PIT_COUNT - 1; i++) {
 			playerTwoPits[i] = new SmallPit(playerTwo);
-			playerTwoPits[i].setCounters(4);
+			playerTwoPits[i].setCounters(3);
 		}
 		
 		//create last pits for players 1 & 2
 		LastPit playerOneLastPit = new LastPit(playerOne);
 		LastPit playerTwoLastPit = new LastPit(playerTwo);
-		playerOneLastPit.setCounters(4);
-		playerTwoLastPit.setCounters(4);
+		playerOneLastPit.setCounters(3);
+		playerTwoLastPit.setCounters(3);
 		
 		//set alternates for last pits
 		playerOneLastPit.setAlternate(playerTwoPits[0]);
