@@ -63,10 +63,10 @@ public class Mancala {
 			colorBases.add(colors);
 		}
 
-//		initPlayers(Algorithm.HUMAN, Algorithm.HUMAN);
+		initPlayers(Algorithm.HUMAN, Algorithm.HUMAN);
 //		initPlayers(Algorithm.HUMAN, Algorithm.RANDOM);
 //		initPlayers(Algorithm.RANDOM, Algorithm.RANDOM);
-		initPlayers(Algorithm.HUMAN, Algorithm.SMART);
+//		initPlayers(Algorithm.HUMAN, Algorithm.SMART);
 
 		gui = new GUI(this);
 
