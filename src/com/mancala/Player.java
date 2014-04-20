@@ -4,9 +4,9 @@ public class Player {
 	private String name;
 	protected boolean turn;
 	private boolean movingBeans;
-	private BigPit bigPit;
+	 BigPit bigPit;
 	protected SmallPit[] smallPits;
-	private Mancala mancala;
+	protected Mancala mancala;
 
 	public Player(Mancala mancala) {
 		this.mancala = mancala;
