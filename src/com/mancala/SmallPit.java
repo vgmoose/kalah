@@ -66,6 +66,9 @@ public class SmallPit extends Pit {
 					if (SmallPit.this.owner.getMancala().checkWin()) {
 						SmallPit.this.owner.endTurn();
 					}
+					
+					// restart the turn for the automated players
+					SmallPit.this.owner.startTurn();
 				}
 				SmallPit.this.owner.endMovingBeans();
 			}		

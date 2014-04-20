@@ -1,1 +1,7 @@
+RandomBot Right	27
+RandomBot Left	27
+Human	26
+a	24
 Player Two	22
+Human Right	21
+Player One	19

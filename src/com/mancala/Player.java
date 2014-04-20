@@ -2,15 +2,16 @@ package com.mancala;
 
 public class Player {
 	private String name;
-	private boolean turn;
+	protected boolean turn;
 	private boolean movingBeans;
 	private BigPit bigPit;
-	private SmallPit[] smallPits;
+	protected SmallPit[] smallPits;
 	private Mancala mancala;
 
 	public Player(Mancala mancala) {
 		this.mancala = mancala;
 		movingBeans = false;
+		setName("Human");
 	}
 
 	public String getName() {
