@@ -2,8 +2,9 @@ package com.mancala;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
+import java.io.Serializable;
 
-public class Bean {
+public class Bean implements Serializable {
 	private double relativeX;
 	private double relativeY;
 	int red = 255;

@@ -21,7 +21,7 @@ public class RandomBot extends Player {
 		}
 
 		if (chosenPit != null)
-			chosenPit.moveCounters();
+			chosenPit.moveCountersHighlight();
 	}
 
 }

@@ -113,8 +113,14 @@ public class Pot extends JComponent {
 
 	@Override
 	protected void paintComponent(Graphics g) {
+		
+		if (! pit.owner.mancala.cloned)
+		{
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
+		
+//			mouseOver = pit.highlight;
+		
 		if (!mouseOver) {
 			g2d.setColor(new Color(92, 51, 23));
 		} else {
@@ -153,6 +159,7 @@ public class Pot extends JComponent {
 			g2d.drawString(beans.size() + "", (int)(getWidth() * 0.5) - 5, 10);
 		}
 		lock.unlock();
+		}
 	}
 	
 	private boolean isSuitable(Bean bean) {

@@ -1,6 +1,8 @@
 package com.mancala;
 
-public class LastPit extends SmallPit {
+import java.io.Serializable;
+
+public class LastPit extends SmallPit implements Serializable{
 	
 	private Pit alternate;
 	

@@ -27,9 +27,16 @@ public class SmallPit extends Pit {
 	public Pit getNext() {
 		return next;
 	}
+	
+	public void moveCountersHighlight()
+	{
+//		highlight = true;
+		moveCounters();
+	}
 
 	@Override
 	public void moveCounters() {
+		
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -41,11 +48,20 @@ public class SmallPit extends Pit {
 					current.addCounters(1);
 					amount--;
 					try {
-						Thread.sleep(500);
+						if (! owner.mancala.cloned)
+						{
+							if (owner.mancala.botVbot)
+								Thread.sleep(10);
+							else
+								Thread.sleep(300);
+						}
+						SmallPit.this.highlight = false;
+
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
+				
 
 				if (current instanceof SmallPit) {
 					if (current.getCounters() == 1 && current.owner == SmallPit.this.owner) {
@@ -74,6 +90,7 @@ public class SmallPit extends Pit {
 			}		
 		}).start();
 	}
+
 
 	@Override
 	public void reset() {

@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -18,7 +19,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class GUI {
+public class GUI implements Serializable{
 	 Pot[] pots;
 	 Pot bigPot1;
 	 Pot bigPot2;

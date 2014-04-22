@@ -1,11 +1,14 @@
 package com.mancala;
 
-public abstract class Pit {
+import java.io.Serializable;
+
+public abstract class Pit implements Serializable{
 	
 	protected int counters;
 	protected Pit next;
 	protected Player owner;
 	protected Pot pot;
+	boolean highlight = false;
 	
 	abstract public Pit getNext();
 	

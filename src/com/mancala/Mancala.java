@@ -1,16 +1,20 @@
 package com.mancala;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-public class Mancala {
+public class Mancala implements Serializable {
 	private static final int PIT_COUNT = 6;
 
 	GUI gui;
 	private Player playerOne;
 	private Player playerTwo;
 	private HighScores highScores;
+	public boolean cloned = false;
+
+	protected boolean botVbot;
 
 	enum Algorithm {
 		HUMAN, RANDOM, SMART;
@@ -41,6 +45,8 @@ public class Mancala {
 			}
 		}
 
+		if (!cloned)
+		{
 		if(playerOne.getScore() > playerTwo.getScore()) {
 			highScores.addHighSCore(playerOne.getName(), playerOne.getScore());
 			JOptionPane.showMessageDialog(null, playerOne.getName() + " won with " + playerOne.getScore() + " points.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
@@ -49,6 +55,7 @@ public class Mancala {
 			JOptionPane.showMessageDialog(null, playerTwo.getName() + " won with " + playerTwo.getScore() + " points.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(null, "It was a tie. " + playerOne.getName() + " and " + playerTwo.getName() + " both scored 24 points.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+		}
 		}
 
 		return true;
@@ -67,6 +74,7 @@ public class Mancala {
 //		initPlayers(Algorithm.HUMAN, Algorithm.RANDOM);
 //		initPlayers(Algorithm.RANDOM, Algorithm.RANDOM);
 //		initPlayers(Algorithm.HUMAN, Algorithm.SMART);
+//		initPlayers(Algorithm.RANDOM, Algorithm.SMART);
 
 		gui = new GUI(this);
 
@@ -119,6 +127,9 @@ public class Mancala {
 			playerOne.setName(playerOne.getName() + " Right");
 			playerTwo.setName(playerTwo.getName() + " Left");
 		}
+		
+		botVbot = (playerOne.getClass().getName().equals("Player") ||
+					playerTwo.getClass().getName().equals("Player"));
 
 		playerTwo.endTurn();
 		initPits();
@@ -195,6 +206,11 @@ public class Mancala {
 		playerOne.setBigPit(playerOneBigPit);
 		playerTwo.setBigPit(playerTwoBigPit);
 	}
+	
+	public Object clone() throws CloneNotSupportedException
+	{
+		return super.clone();
+	}
 
 	public Player getPlayerOne() {
 		return playerOne;
@@ -206,6 +222,12 @@ public class Mancala {
 
 	public HighScores getHighSCores() {
 		return highScores;
+	}
+
+	public void youAreAClone() {
+		cloned = true;
+//		gui = null;
+		
 	}
 
 }

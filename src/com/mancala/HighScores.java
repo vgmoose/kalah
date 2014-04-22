@@ -7,6 +7,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-public class HighScores {
+public class HighScores implements Serializable{
 	
 	private int highestScore;
 	private int lowestScore = 0;

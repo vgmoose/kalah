@@ -1,6 +1,8 @@
 package com.mancala;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable{
 	private String name;
 	protected boolean turn;
 	private boolean movingBeans;
