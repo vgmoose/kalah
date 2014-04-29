@@ -1,0 +1,5 @@
+compileProg:	com/mancala/Bean.java com/mancala/LastPit.java com/mancala/Player.java com/mancala/BigPit.java com/mancala/Mancala.java com/mancala/Pot.java com/mancala/BigPot.java com/mancala/MyPanel.java com/mancala/RandomBot.java com/mancala/GUI.java com/mancala/ObjectCloner.java com/mancala/SmallPit.java com/mancala/HighScores.java com/mancala/Pit.java com/mancala/SmartBot.java
+		javac com/mancala/*.java
+		
+runProg:	com/mancala/Bean.class com/mancala/LastPit.class com/mancala/Player.class com/mancala/BigPit.class com/mancala/Mancala.class com/mancala/Pot.class com/mancala/BigPot.class com/mancala/MyPanel.class com/mancala/RandomBot.class com/mancala/GUI.class com/mancala/ObjectCloner.class com/mancala/SmallPit.class com/mancala/HighScores.class com/mancala/Pit.class com/mancala/SmartBot.class
+		java -classpath . com/mancala/Mancala $(p1) $(p2) $(depth)

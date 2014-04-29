@@ -19,6 +19,11 @@ public class Mancala implements Serializable {
 	enum Algorithm {
 		HUMAN, RANDOM, SMART;
 	}
+	
+	boolean forcePlayersFromArgs= false;
+	Mancala.Algorithm type1, type2;
+
+	int depth = 3;
 
 	static ArrayList<int[]> colorBases;
 
@@ -27,6 +32,21 @@ public class Mancala implements Serializable {
 	 */
 	public static void main(String[] args) {
 		Mancala mancala = new Mancala();
+		
+		if (args.length >= 2)
+		{
+			mancala.forcePlayersFromArgs = true;
+			
+			mancala.type1 = (args[0].equals("smart")? Algorithm.SMART : Algorithm.HUMAN);
+			mancala.type1 = (args[0].equals("random")? Algorithm.RANDOM : mancala.type1);
+			
+			mancala.type2 = (args[1].equals("smart")? Algorithm.SMART : Algorithm.HUMAN);
+			mancala.type2 = (args[1].equals("random")? Algorithm.RANDOM : mancala.type2);
+			
+			if (args.length == 3)
+				mancala.depth = Integer.parseInt(args[2]);
+		}
+		
 		mancala.initGame();
 	}
 
@@ -70,11 +90,16 @@ public class Mancala implements Serializable {
 			colorBases.add(colors);
 		}
 
-		initPlayers(Algorithm.HUMAN, Algorithm.HUMAN);
+//		initPlayers(Algorithm.HUMAN, Algorithm.HUMAN);
 //		initPlayers(Algorithm.HUMAN, Algorithm.RANDOM);
 //		initPlayers(Algorithm.RANDOM, Algorithm.RANDOM);
 //		initPlayers(Algorithm.HUMAN, Algorithm.SMART);
-//		initPlayers(Algorithm.RANDOM, Algorithm.SMART);
+		
+		
+		if (forcePlayersFromArgs)
+			initPlayers(type1, type2);
+		else
+			initPlayers(Algorithm.RANDOM, Algorithm.SMART);
 
 		gui = new GUI(this);
 

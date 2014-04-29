@@ -32,7 +32,7 @@ public class SmartBot extends Player
 		{
 				
 		// scan ahead 10 turns to see what potential moves are the best
-		int val = minimax(mancala, Integer.MIN_VALUE, Integer.MAX_VALUE, true, 3);
+		int val = minimax(mancala, Integer.MIN_VALUE, Integer.MAX_VALUE, true, mancala.depth);
 		
 		// print out the heuristic
 		System.out.println("pit #" + heuristicPitIndex + ", optimal value: " + val);
